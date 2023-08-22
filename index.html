@@ -78,14 +78,7 @@
         flex-direction: row;
         background-color: var(--white-color);
       }
-      @media (max-width: 500px) {
-        #global-dialog-container {
-          flex-direction: column;
-        }
-        body {
-          margin: 0px;
-        }
-      }
+
       #left-panel-container {
         background: var(--main-background);
         flex: 1 1 0px;
@@ -160,11 +153,22 @@
         margin-top: 5px;
         margin-bottom: 5px;
       }
+
+      /*Responsive design rules*/
+      @media (max-width: 500px) {
+        #global-dialog-container {
+          flex-direction: column;
+        }
+        body {
+          margin: 0px;
+        }
+      }
     </style>
   </head>
   <body>
     <div id="global-container">
       <div id="global-dialog-container">
+        <!-- Left panel container -->
         <div id="left-panel-container" class="panel">
           <h4
             style="
@@ -194,66 +198,73 @@
             You scored higher than 65% of the people who have taken these tests.
           </p>
         </div>
+
+        <!-- Right panel container -->
         <div id="right-panel-container" class="panel">
           <span style="font-size: var(--small-font); font-weight: bold"
             >Summary</span
           >
+          <div class="skills-container"></div>
           <!-- Reaction skill item -->
           <div
+            id="reaction-skill"
             class="skill-score-container"
             style="background-color: var(--lightred-color)"
           >
             <div class="label-container" style="color: var(--red-color)">
               <img
-                class="image-icon"
+                class="image-icon skill-icon"
                 src="assets/images/icon-reaction.svg"
                 alt="icon"
               />
-              <span>Reaction</span>
+              <span class="skill-category">Reaction</span>
             </div>
             <div class="score-label-container">
-              <span><strong>80</strong>/100</span>
+              <span><strong class="skill-score">80</strong>/100</span>
             </div>
           </div>
 
           <!-- Memory skill item -->
           <div
+            id="memory-skill"
             class="skill-score-container"
             style="background-color: var(--lightyellow-color)"
           >
             <div class="label-container" style="color: var(--yellow-color)">
               <img
-                class="image-icon"
+                class="image-icon skill-icon"
                 src="assets/images/icon-memory.svg"
                 alt="icon"
               />
-              <span>Memory</span>
+              <span class="skill-category">Memory</span>
             </div>
             <div class="score-label-container">
-              <span><strong>92</strong>/100</span>
+              <span><strong class="skill-score">92</strong>/100</span>
             </div>
           </div>
 
           <!-- Verbal skill item -->
           <div
+            id="verbal-skill"
             class="skill-score-container"
             style="background-color: var(--lightgreen-color)"
           >
             <div class="label-container" style="color: var(--green-color)">
               <img
-                class="image-icon"
+                class="image-icon skill-icon"
                 src="assets/images/icon-verbal.svg"
                 alt="icon"
               />
-              <span>Verbal</span>
+              <span class="skill-category">Verbal</span>
             </div>
             <div class="score-label-container">
-              <span><strong>61</strong>/100</span>
+              <span><strong class="skill-score">61</strong>/100</span>
             </div>
           </div>
 
           <!-- Visual skill item -->
           <div
+            id="visual-skill"
             class="skill-score-container"
             style="background-color: var(--verylightblue-color)"
           >
@@ -263,16 +274,48 @@
                 src="assets/images/icon-visual.svg"
                 alt="icon"
               />
-              <span>Visual</span>
+              <span class="skill-category">Visual</span>
             </div>
             <div class="score-label-container">
-              <span><strong>72</strong>/100</span>
+              <span><strong class="skill-score">72</strong>/100</span>
             </div>
           </div>
 
-          <button class="btn">Continue</button>
+          <button class="btn" onclick="loadInfo()">Continue</button>
         </div>
       </div>
     </div>
+    <script>
+      window.onload = () => {
+        // === load the dynamic content inside the page ===
+
+        fetch("./data.json")
+          .then((res) => {
+            return res.json();
+          })
+          .then((data) => {
+            // set category name to corresponding label
+            document
+              .querySelectorAll(".skill-category")
+              .forEach((element, index) => {
+                element.innerText = data[index].category;
+              });
+
+            // set skill score to corresponding label
+            document
+              .querySelectorAll(".skill-score")
+              .forEach((element, index) => {
+                element.innerText = data[index].score;
+              });
+
+            // set skill svg to corresponding image
+            document
+              .querySelectorAll(".skill-icon")
+              .forEach((element, index) => {
+                element.src = data[index].icon;
+              });
+          });
+      };
+    </script>
   </body>
 </html>
