@@ -1,0 +1,154 @@
+/*All the css variables used along the page*/
+
+@font-face {
+  font-family: HankenGrotesk;
+  src: url(/assets/fonts/HankenGrotesk-VariableFont_wght.ttf);
+}
+
+body {
+  font-family: HankenGrotesk;
+}
+
+:root {
+  /*colors*/
+  --white-color: white;
+  --blue-color: #322bea;
+  --darkblue-color: #4f24cb;
+  --verydarkblue-color: #303b59;
+  --lightblue-color: #6743fd;
+  --verylightblue-color: #f3f3fd;
+  --red-color: #d65d66;
+  --lightred-color: #fff6f5;
+  --black-color: #454756;
+
+  --yellow-color: #e9b23e;
+  --lightyellow-color: #fffbf2;
+  --green-color: #19a381;
+  --lightgreen-color: #f2fbfa;
+
+  --gray-color: #9496a5;
+
+  /*fonts*/
+  --large-font: 50px;
+  --medium-font: 30px;
+  --small-font: 20px;
+
+  /*Background effects*/
+  --main-background: linear-gradient(
+    to top,
+    var(--blue-color),
+    var(--lightblue-color)
+  );
+
+  --secundary-background: linear-gradient(
+    to bottom,
+    var(--darkblue-color),
+    transparent
+  );
+}
+
+.panel {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+#global-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+#global-dialog-container {
+  display: flex;
+  width: 700px;
+  flex-direction: row;
+  background-color: var(--white-color);
+}
+
+#left-panel-container {
+  background: var(--main-background);
+  flex: 1 1 0px;
+  border-radius: 20px;
+  align-items: center;
+}
+#right-panel-container {
+  background-color: var(--white-color);
+  border-radius: 20px;
+  flex: 1 1 0px;
+  align-items: stretch;
+}
+.score {
+  display: block;
+  color: var(--white-color);
+  font-size: var(--large-font);
+}
+
+.ellipse-score-container {
+  background: var(--secundary-background);
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ellipse-score-content-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.skill-score-container {
+  background-color: yellowgreen;
+  padding: 10px;
+  margin-top: 15px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 10px;
+}
+
+.multiple-line-text-container {
+  margin-left: 60px;
+  margin-right: 40px;
+  text-align: center;
+  color: var(--gray-color);
+}
+.btn {
+  background: var(--main-background);
+  border: none;
+  font-size: var(--small-font);
+  border-radius: 30px;
+  padding: 20px;
+  color: var(--white-color);
+  margin-top: 15px;
+}
+
+.btn:hover {
+  background: var(--verydarkblue-color);
+}
+.label-container {
+  display: flex;
+  align-items: center;
+}
+.image-icon {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+/*Responsive design rules*/
+@media (max-width: 500px) {
+  #global-dialog-container {
+    flex-direction: column;
+  }
+  body {
+    margin: 0px;
+  }
+}
